@@ -1,16 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GenericDuplicateHandler.Business.Utilities
+﻿namespace GenericDuplicateHandler.Business.Utilities
 {
     public class DuplicateHandler<T>
     {
-        public ICollection<T> RemoveDuplicates<T>(ICollection<T> source)
+        public ICollection<T> RemoveDuplicates(ICollection<T> source)
         {
             return source.Distinct().ToList();
+        }
+
+        public ICollection<T> RemoveDuplicatesNoLinq(ICollection<T> source)
+        {
+            var existingItems = new HashSet<T>();
+            foreach (var item in source)
+            {
+                existingItems.Add(item);
+            }
+            return existingItems.ToList();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using GenericDuplicateHandler.Business;
-using GenericDuplicateHandler.Business.Models;
+﻿using GenericDuplicateHandler.Business.Models;
 using GenericDuplicateHandler.Business.Utilities;
 
 internal class Program
