@@ -4,17 +4,28 @@
     {
         public ICollection<T> RemoveDuplicates(ICollection<T> source)
         {
-            return source.Distinct().ToList();
+            var distinctList = source.Distinct().ToList();
+            source.Clear();
+            foreach (var item in distinctList)
+            {
+                source.Add(item);
+            }
+            return source;
         }
 
         public ICollection<T> RemoveDuplicatesNoLinq(ICollection<T> source)
         {
             var existingItems = new HashSet<T>();
-            foreach (var item in source)
+            var list = new List<T>(source);
+            source.Clear();
+            foreach (var item in list)
             {
-                existingItems.Add(item);
+                if (existingItems.Add(item))
+                {
+                    source.Add(item);
+                };
             }
-            return existingItems.ToList();
+            return source;
         }
     }
 }
